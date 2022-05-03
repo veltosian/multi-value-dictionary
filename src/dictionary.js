@@ -55,6 +55,7 @@ class MultiValueDictionary {
 
     clear() {
         // Clears all keys and members from the dictionary
+        this.dictionary = {};
     }
 
     keyExists(key) {

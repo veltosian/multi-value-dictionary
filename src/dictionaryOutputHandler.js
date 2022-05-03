@@ -23,6 +23,7 @@ class dictionaryOutputHandler {
                 this.runRemoveAllCommand(key);
                 break;
             case 'CLEAR':
+                this.runClearCommand();
                 break;
             case 'KEYEXISTS':
                 break;
@@ -92,6 +93,11 @@ class dictionaryOutputHandler {
         catch (err) {
             this.output(err);
         }
+    }
+
+    runClearCommand() {
+        this.dictionary.clear();
+        this.output('Cleared');
     }
 
     output(msg) {

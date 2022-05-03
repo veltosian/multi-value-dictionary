@@ -21,7 +21,7 @@ async function run() {
 }
 
 function getCommand(input) {
-    const command = input.split(' ')[0];
+    const command = input.split(' ')[0].toUpperCase(); // zy Consider removing toUpperCase()
     const validCommands = [
         'KEYS',
         'MEMBERS',
