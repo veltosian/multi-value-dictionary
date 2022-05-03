@@ -47,6 +47,10 @@ class MultiValueDictionary {
 
     removeAll(key) {
         // Removes all members for a key and the given key itself
+        if (!this.dictionary.hasOwnProperty(key)) {
+            throw new Error('key does not exist');
+        }
+        delete this.dictionary[key];
     }
 
     clear() {

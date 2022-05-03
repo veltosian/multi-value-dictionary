@@ -20,6 +20,7 @@ class dictionaryOutputHandler {
                 this.runRemoveCommand(key, member);
                 break;
             case 'REMOVEALL':
+                this.runRemoveAllCommand(key);
                 break;
             case 'CLEAR':
                 break;
@@ -77,6 +78,16 @@ class dictionaryOutputHandler {
         try {
             this.dictionary.remove(key, member);
             this.output('Removed');
+        }
+        catch (err) {
+            this.output(err);
+        }
+    }
+
+    runRemoveAllCommand(key) {
+        try {
+            this.dictionary.removeAll(key);
+            this.output(`Removed`);
         }
         catch (err) {
             this.output(err);
