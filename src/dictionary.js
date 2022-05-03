@@ -5,6 +5,7 @@ class MultiValueDictionary {
 
     getKeys() {
         // Return all keys. Order not guaranteed
+        return (Object.keys(this.dictionary));
     }
 
     getMembers() {
@@ -16,6 +17,13 @@ class MultiValueDictionary {
         // Add a member to a key
         // If key does not yet exist, create it and add member
         // Throw error if member already exists for that key
+        if (!this.dictionary.hasOwnProperty(key)) {
+            this.dictionary[key] = [];
+        }
+        if (this.dictionary[key].includes(member)) {
+            throw new Error(`Error, member already exists for key`);
+        }
+        this.dictionary[key].push(member);
     }
 
     remove(key, member) {

@@ -1,18 +1,18 @@
-const MultiValueDictionary = require('./src/dictionary.js');
 const { question } = require('readline-sync');
+const dictionaryOutputHandler = require('./src/dictionaryOutputHandler');
 
 async function run() {
-    const dictionary = new MultiValueDictionary();
+    const dictionaryHandler = new dictionaryOutputHandler();
 
     while (true) {
         const input = question('>');
         const command = getCommand(input);
         if (!command) {
-            console.log(`Unsupported command: "${input}"`)
+            console.log(`Error: Unsupported command: "${input}"`)
             continue;
         }
         const {key, member} = getArguments(input);
-        handleCommand(command, key, member);
+        dictionaryHandler.handleCommand(command, key, member);
     }
 }
 
@@ -45,12 +45,6 @@ function getArguments(input) {
     const key = arguments[1];
     const member = arguments[2];
     return {key, member};
-}
-
-function handleCommand(command, key, member) {
-    console.log(`Command:\t${command}`);
-    console.log(`Key:\t\t${key}`)
-    console.log(`Member:\t\t${member}`)
 }
 
 run().then();
