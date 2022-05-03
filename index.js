@@ -12,6 +12,10 @@ async function run() {
             continue;
         }
         const {key, member} = getArguments(input);
+        if (!isValidCommand(command, key, member)) {
+            console.log(`Invalid command/argument combination`);
+            continue;
+        }
         dictionaryHandler.handleCommand(command, key, member);
     }
 }
@@ -45,6 +49,11 @@ function getArguments(input) {
     const key = arguments[1];
     const member = arguments[2];
     return {key, member};
+}
+
+function isValidCommand(command, key, member) {
+    // TODO validate command and arguments
+    return true;
 }
 
 run().then();

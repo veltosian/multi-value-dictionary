@@ -11,6 +11,7 @@ class dictionaryOutputHandler {
                 this.runKeysCommand();
                 break;
             case 'MEMBERS':
+                this.runMembersCommand(key);
                 break;
             case 'ADD':
                 this.runAddCommand(key, member);
@@ -46,9 +47,29 @@ class dictionaryOutputHandler {
 
     runKeysCommand() {
         const keys = this.dictionary.getKeys();
-        keys.forEach((key, index) => {
-            console.log(`${index + 1}) ${key}`);
-        })
+        this.list(keys);
+    }
+
+    runMembersCommand(key) {
+        let members = null;
+        try {
+            members = this.dictionary.getMembers(key);
+            this.list(members);
+        }
+        catch (err) {
+            this.output(err);
+        }
+    }
+
+    list(elements) {
+        if (!elements || elements.length === 0) {
+            console.log('');
+        }
+        else {
+            elements.forEach((element, index) => {
+                console.log(`${index + 1}) ${element}`);
+            })
+        }
     }
 
     output(msg) {
