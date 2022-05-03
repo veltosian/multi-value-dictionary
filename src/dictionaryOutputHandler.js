@@ -17,6 +17,7 @@ class dictionaryOutputHandler {
                 this.runAddCommand(key, member);
                 break;
             case 'REMOVE':
+                this.runRemoveCommand(key, member);
                 break;
             case 'REMOVEALL':
                 break;
@@ -63,12 +64,22 @@ class dictionaryOutputHandler {
 
     list(elements) {
         if (!elements || elements.length === 0) {
-            console.log('');
+            console.log('(empty set)');
         }
         else {
             elements.forEach((element, index) => {
                 console.log(`${index + 1}) ${element}`);
             })
+        }
+    }
+
+    runRemoveCommand (key, member) {
+        try {
+            this.dictionary.remove(key, member);
+            this.output('Removed');
+        }
+        catch (err) {
+            this.output(err);
         }
     }
 
