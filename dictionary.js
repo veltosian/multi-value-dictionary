@@ -49,3 +49,5 @@ class MultiValueDictionary {
         // Return dictionary object
     }
 }
+
+module.exports = MultiValueDictionary;
