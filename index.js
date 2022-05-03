@@ -1,4 +1,4 @@
-const MultiValueDictionary = require('./dictionary.js');
+const MultiValueDictionary = require('./src/dictionary.js');
 const { question } = require('readline-sync');
 
 async function run() {
