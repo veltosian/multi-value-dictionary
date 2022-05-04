@@ -1,6 +1,27 @@
 const { question } = require('readline-sync');
 const dictionaryOutputHandler = require('./src/dictionaryOutputHandler');
 
+const noArgCommands = [
+    'KEYS',
+    'CLEAR',
+    'ALLMEMBERS',
+    'ITEMS'
+];
+
+const singleArgCommands = [
+    'MEMBERS',
+    'REMOVEALL',
+    'KEYEXISTS'
+]
+
+const doubleArgCommands = [
+    'ADD',
+    'REMOVE',
+    'MEMBEREXISTS'
+]
+
+const validCommands = noArgCommands.concat(singleArgCommands).concat(doubleArgCommands);
+
 async function run() {
     const dictionaryHandler = new dictionaryOutputHandler();
 
@@ -22,18 +43,6 @@ async function run() {
 
 function getCommand(input) {
     const command = input.split(' ')[0].toUpperCase(); // zy Consider removing toUpperCase()
-    const validCommands = [
-        'KEYS',
-        'MEMBERS',
-        'ADD',
-        'REMOVE',
-        'REMOVEALL',
-        'CLEAR',
-        'KEYEXISTS',
-        'MEMBEREXISTS',
-        'ALLMEMBERS',
-        'ITEMS'
-    ];
 
     if (validCommands.includes(command)) {
         return command;
@@ -52,8 +61,15 @@ function getArguments(input) {
 }
 
 function isValidCommand(command, key, member) {
-    // TODO validate command and arguments
-    return true;
+    if (key && member) {
+        return doubleArgCommands.includes(command);
+    }
+
+    if (key) {
+        return singleArgCommands.includes(command);
+    }
+
+    return noArgCommands.includes(command);
 }
 
 run().then();
