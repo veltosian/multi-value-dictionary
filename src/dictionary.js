@@ -11,7 +11,7 @@ class MultiValueDictionary {
     getMembers(key) {
         // Return members for a given key. Order not guaranteed
         // Throw error if key does not exist
-        if (!this.dictionary.hasOwnProperty(key)) {
+        if (!this.keyExists(key)) {
             throw new Error(`key does not exist`);
         }
         return this.dictionary[key];
@@ -21,10 +21,10 @@ class MultiValueDictionary {
         // Add a member to a key
         // If key does not yet exist, create it and add member
         // Throw error if member already exists for that key
-        if (!this.dictionary.hasOwnProperty(key)) {
+        if (!this.keyExists(key)) {
             this.dictionary[key] = [];
         }
-        if (this.dictionary[key].includes(member)) {
+        if (this.memberExists(key, member)) {
             throw new Error(`member already exists for key`);
         }
         this.dictionary[key].push(member);
@@ -33,10 +33,10 @@ class MultiValueDictionary {
     remove(key, member) {
         // Remove a particular member from a key
         // If last member is removed from a key, remove the key itself as well
-        if (!this.dictionary.hasOwnProperty(key)) {
+        if (!this.keyExists(key)) {
             throw new Error('key does not exist');
         }
-        if (!this.dictionary[key].includes(member)) {
+        if (!this.memberExists(key, member)) {
             throw new Error('member does not exist');
         }
         this.dictionary[key] = this.dictionary[key].filter(val => val !== member);
@@ -47,7 +47,7 @@ class MultiValueDictionary {
 
     removeAll(key) {
         // Removes all members for a key and the given key itself
-        if (!this.dictionary.hasOwnProperty(key)) {
+        if (!this.keyExists(key)) {
             throw new Error('key does not exist');
         }
         delete this.dictionary[key];
