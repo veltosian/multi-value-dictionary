@@ -29,6 +29,7 @@ class dictionaryOutputHandler {
                 this.runKeyExistsCommand(key);
                 break;
             case 'MEMBEREXISTS':
+                this.runMemberExistsCommand(key, member);
                 break;
             case 'ALLMEMBERS':
                 break;
@@ -103,6 +104,10 @@ class dictionaryOutputHandler {
 
     runKeyExistsCommand(key) {
         this.output(this.dictionary.keyExists(key));
+    }
+
+    runMemberExistsCommand(key, member) {
+        this.output(this.dictionary.memberExists(key, member));
     }
 
     output(msg) {

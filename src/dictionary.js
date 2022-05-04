@@ -66,6 +66,10 @@ class MultiValueDictionary {
     memberExists(key, member) {
         // Return boolean of whether member exists in a given key
         // Return false if key does not exist
+        if (!this.keyExists(key)) {
+            return false;
+        }
+        return this.dictionary[key].includes(member);
     }
 
     getAllMembers() {
