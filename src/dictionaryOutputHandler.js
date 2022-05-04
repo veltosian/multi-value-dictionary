@@ -26,6 +26,7 @@ class dictionaryOutputHandler {
                 this.runClearCommand();
                 break;
             case 'KEYEXISTS':
+                this.runKeyExistsCommand(key);
                 break;
             case 'MEMBEREXISTS':
                 break;
@@ -98,6 +99,10 @@ class dictionaryOutputHandler {
     runClearCommand() {
         this.dictionary.clear();
         this.output('Cleared');
+    }
+
+    runKeyExistsCommand(key) {
+        this.output(this.dictionary.keyExists(key));
     }
 
     output(msg) {

@@ -60,6 +60,7 @@ class MultiValueDictionary {
 
     keyExists(key) {
         // Return true if the key exists, else return false
+        return this.dictionary.hasOwnProperty(key);
     }
 
     memberExists(key, member) {
