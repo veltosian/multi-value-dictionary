@@ -35,6 +35,7 @@ class dictionaryOutputHandler {
                 this.runAllMembersCommand();
                 break;
             case 'ITEMS':
+                this.runItemsCommand();
                 break;
             default:
                 console.log(`Error: Unsupported command: ${command}`);
@@ -114,6 +115,18 @@ class dictionaryOutputHandler {
     runAllMembersCommand() {
         const members = this.dictionary.getAllMembers();
         this.list(members);
+    }
+
+    runItemsCommand() {
+        const items = this.dictionary.getItems();
+        let itemList = [];
+
+        for (const key in items) {
+            const formattedList = items[key].map(member => `${key}: ${member}`)
+            itemList = itemList.concat(formattedList);
+        }
+
+        this.list(itemList);
     }
 
     output(msg) {

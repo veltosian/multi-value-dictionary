@@ -84,6 +84,7 @@ class MultiValueDictionary {
 
     getItems() {
         // Return dictionary object
+        return this.dictionary;
     }
 }
 
