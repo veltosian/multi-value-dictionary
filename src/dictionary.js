@@ -75,6 +75,11 @@ class MultiValueDictionary {
     getAllMembers() {
         // Return all members in dictionary.
         // If no members exist return empty array
+        let members = [];
+        for (const key in this.dictionary) {
+            members = members.concat(this.dictionary[key]);
+        }
+        return members;
     }
 
     getItems() {

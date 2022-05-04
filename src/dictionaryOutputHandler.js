@@ -32,6 +32,7 @@ class dictionaryOutputHandler {
                 this.runMemberExistsCommand(key, member);
                 break;
             case 'ALLMEMBERS':
+                this.runAllMembersCommand();
                 break;
             case 'ITEMS':
                 break;
@@ -108,6 +109,11 @@ class dictionaryOutputHandler {
 
     runMemberExistsCommand(key, member) {
         this.output(this.dictionary.memberExists(key, member));
+    }
+
+    runAllMembersCommand() {
+        const members = this.dictionary.getAllMembers();
+        this.list(members);
     }
 
     output(msg) {
