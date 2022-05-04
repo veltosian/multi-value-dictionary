@@ -5,7 +5,8 @@ const noArgCommands = [
     'KEYS',
     'CLEAR',
     'ALLMEMBERS',
-    'ITEMS'
+    'ITEMS',
+    'HELP'
 ];
 
 const singleArgCommands = [
@@ -42,7 +43,7 @@ async function run() {
 }
 
 function getCommand(input) {
-    const command = input.split(' ')[0].toUpperCase(); // zy Consider removing toUpperCase()
+    const command = input.split(' ')[0];
 
     if (validCommands.includes(command)) {
         return command;

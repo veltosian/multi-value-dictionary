@@ -37,6 +37,9 @@ class dictionaryOutputHandler {
             case 'ITEMS':
                 this.runItemsCommand();
                 break;
+            case 'HELP':
+                this.runHelpCommand();
+                break;
             default:
                 console.log(`Error: Unsupported command: ${command}`);
         }
@@ -127,6 +130,27 @@ class dictionaryOutputHandler {
         }
 
         this.list(itemList);
+    }
+
+    runHelpCommand() {
+        const commandMsgs = [
+            'KEYS  - Displays keys currently in the dictinoary',
+            'MEMBERS <key>  - Displays members currently associated with the given key',
+            'ADD <key> <member>  - Adds member to key in dictionary. If key does not exist, also adds the key',
+            'REMOVE <key> <member>  - Removes member from given key in dictionary. Also removes the key if last member is removed',
+            'REMOVEALL <key>  - Removes all members associated with given key and removes the key itself',
+            'CLEAR  - Removes all keys and members from dictionary',
+            'KEYEXISTS <key>  - Indicates whether a key exists by outputting true/false',
+            'MEMBEREXISTS <key> <member>  - Indicates whether member exists for given key by outputting true/false',
+            'ALLMEMBERS <key>  - Displays all members for all keys in the dictionary',
+            'ITEMS  - Displays all key:member pairs in the dictionary'
+        ];
+        console.log('Multi-value Dictionary Help Menu')
+        console.log('Tool to manipulate dictionary of keys and associated members');
+        console.log('Commands');
+        commandMsgs.forEach(msg => {
+            console.log(`\t${msg}`);
+        })
     }
 
     output(msg) {
