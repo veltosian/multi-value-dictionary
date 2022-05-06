@@ -41,11 +41,12 @@ class dictionaryOutputHandler {
                 this.runHelpCommand();
                 break;
             case 'EXIT':
-                this.runExitCommand();
+                return this.runExitCommand();
                 break;
             default:
                 console.log(`Error: Unsupported command: ${command}`);
         }
+        return true;
     }
 
     runAddCommand(key, member) {
@@ -158,7 +159,7 @@ class dictionaryOutputHandler {
     }
 
     runExitCommand() {
-        process.exit(0);
+        return false;
     }
 
     output(msg) {

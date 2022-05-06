@@ -26,8 +26,8 @@ const validCommands = noArgCommands.concat(singleArgCommands).concat(doubleArgCo
 
 async function run() {
     const dictionaryHandler = new dictionaryOutputHandler();
-
-    while (true) {
+    let keepRunning = true;
+    while (keepRunning) {
         const input = question('>');
         const command = getCommand(input);
         if (!command) {
@@ -39,7 +39,7 @@ async function run() {
             console.log(`Invalid command/argument combination`);
             continue;
         }
-        dictionaryHandler.handleCommand(command, key, member);
+        keepRunning = dictionaryHandler.handleCommand(command, key, member);
     }
 }
 
@@ -55,7 +55,6 @@ function getCommand(input) {
 }
 
 function getArguments(input) {
-    // TODO Add validation to input arguments
     const arguments = input.split(' ');
     const key = arguments[1];
     const member = arguments[2];
