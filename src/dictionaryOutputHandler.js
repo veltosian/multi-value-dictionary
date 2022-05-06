@@ -40,6 +40,9 @@ class dictionaryOutputHandler {
             case 'HELP':
                 this.runHelpCommand();
                 break;
+            case 'EXIT':
+                this.runExitCommand();
+                break;
             default:
                 console.log(`Error: Unsupported command: ${command}`);
         }
@@ -143,7 +146,8 @@ class dictionaryOutputHandler {
             'KEYEXISTS <key>  - Indicates whether a key exists by outputting true/false',
             'MEMBEREXISTS <key> <member>  - Indicates whether member exists for given key by outputting true/false',
             'ALLMEMBERS <key>  - Displays all members in the dictionary',
-            'ITEMS  - Displays all key:member pairs in the dictionary'
+            'ITEMS  - Displays all key:member pairs in the dictionary',
+            'EXIT - Exits the program'
         ];
         console.log('Multi-value Dictionary Help Menu')
         console.log('Tool to manipulate dictionary of keys and associated members');
@@ -151,6 +155,10 @@ class dictionaryOutputHandler {
         commandMsgs.forEach(msg => {
             console.log(`\t${msg}`);
         })
+    }
+
+    runExitCommand() {
+        process.exit(0);
     }
 
     output(msg) {

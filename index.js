@@ -6,7 +6,8 @@ const noArgCommands = [
     'CLEAR',
     'ALLMEMBERS',
     'ITEMS',
-    'HELP'
+    'HELP',
+    'EXIT'
 ];
 
 const singleArgCommands = [
@@ -33,7 +34,7 @@ async function run() {
             console.log(`Error: Unsupported command: "${input}"`)
             continue;
         }
-        const {key, member} = getArguments(input);
+        const { key, member } = getArguments(input);
         if (!isValidCommand(command, key, member)) {
             console.log(`Invalid command/argument combination`);
             continue;
@@ -58,7 +59,7 @@ function getArguments(input) {
     const arguments = input.split(' ');
     const key = arguments[1];
     const member = arguments[2];
-    return {key, member};
+    return { key, member };
 }
 
 function isValidCommand(command, key, member) {
